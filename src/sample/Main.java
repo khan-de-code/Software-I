@@ -10,10 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,15 +30,21 @@ public class Main extends Application {
         title.setId("main-screen-title");
         root.setTop(title);
 
-            HBox innerRoot = new HBox(100);
+            HBox innerRoot = new HBox(30);
             innerRoot.setId("inner-root");
+            innerRoot.autosize();
                 BorderPane parts = new BorderPane();
-                parts.setId("parts-products-box");
+                    parts.setId("parts-products-box");
                     HBox partsHBoxTop = new HBox(15);
+                        partsHBoxTop.setId("parts-products-top");
                         Text partsTitle = new Text("Parts");
+                            partsTitle.setId("parts-products-title");
+                        Pane spacerPartsTop = new Pane();
                         Button partsSearchBtn = new Button("Search");
                         TextField partsSearchField = new TextField();
-                        partsHBoxTop.getChildren().addAll(partsTitle, partsSearchBtn, partsSearchField);
+                            partsSearchField.setId("search-field");
+                        partsHBoxTop.getChildren().addAll(partsTitle, spacerPartsTop, partsSearchBtn, partsSearchField);
+                        partsHBoxTop.setHgrow(spacerPartsTop, Priority.ALWAYS);
                     parts.setTop(partsHBoxTop);
 
                     TableView partsTableView = new TableView();
@@ -54,15 +57,20 @@ public class Main extends Application {
                         Button partsDeleteBtn = new Button("Delete");
                         partsHBoxBottom.getChildren().addAll(partsAddBtn, partsModifyBtn, partsDeleteBtn);
                     parts.setBottom(partsHBoxBottom);
+            innerRoot.setHgrow(parts, Priority.ALWAYS);
                     
                 BorderPane products = new BorderPane();
-                products.setId("parts-products-box");
+                    products.setId("parts-products-box");
                     HBox productsHBoxTop = new HBox(15);
+                        productsHBoxTop.setId("parts-products-top");
                         Text productsTitle = new Text("Products");
+                            productsTitle.setId("parts-products-title");
+                        Pane spacerProductsTop = new Pane();
                         Button productsSearchBtn = new Button("Search");
                         TextField productsSearchField = new TextField();
-                        productsHBoxTop.getChildren().addAll(productsTitle, productsSearchBtn, productsSearchField);
+                        productsHBoxTop.getChildren().addAll(productsTitle,spacerProductsTop, productsSearchBtn, productsSearchField);
                     products.setTop(productsHBoxTop);
+                    partsHBoxTop.setHgrow(spacerProductsTop, Priority.ALWAYS);
 
                     TableView productsTableView = new TableView();
 // TODO: implement table columns after part class is created
@@ -74,6 +82,7 @@ public class Main extends Application {
                         Button productsDeleteBtn = new Button("Delete");
                         productsHBoxBottom.getChildren().addAll(productsAddBtn, productsModifyBtn, productsDeleteBtn);
                     products.setBottom(productsHBoxBottom);
+            innerRoot.setHgrow(products, Priority.ALWAYS);
 
             innerRoot.getChildren().addAll(parts, products);
         root.setCenter(innerRoot);

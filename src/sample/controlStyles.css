@@ -15,5 +15,19 @@
     -fx-border-color: black;
     -fx-border-radius: 15px;
     -fx-padding: 20 10 20 10;
-    -fx-min-width: 450px;
+    -fx-min-width: 500px;
+    -fx-min-height: 300px;
+}
+
+#parts-products-top{
+    -fx-padding: 0 0 15 5;
+}
+
+#parts-products-title {
+    -fx-font: 16px "Serif";
+    -fx-font-weight: bold;
+}
+
+#search-field{
+    -fx-alignment: center-right;
 }
