@@ -1,0 +1,19 @@
+.root{
+    -fx-padding: 50 25 10 25;
+}
+
+#main-screen-title{
+    -fx-font: 20px "Serif";
+    -fx-font-weight: bold;
+}
+
+#inner-root{
+    -fx-padding: 50 0 20 0;
+}
+
+#parts-products-box{
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-padding: 20 10 20 10;
+    -fx-min-width: 450px;
+}

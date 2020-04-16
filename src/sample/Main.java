@@ -6,6 +6,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -13,31 +17,74 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.time.format.TextStyle;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Text title = new Text("Inventory Management System");
+
         Text title2 = new Text("Inventory Management System");
         Text title3 = new Text("Inventory Management System3");
 
 
         BorderPane root = new BorderPane();
+        Text title = new Text("Inventory Management System");
+        title.setId("main-screen-title");
+        root.setTop(title);
+
             HBox innerRoot = new HBox(100);
+            innerRoot.setId("inner-root");
                 BorderPane parts = new BorderPane();
-                    parts.setTop(new Text("Parts"));
+                parts.setId("parts-products-box");
+                    HBox partsHBoxTop = new HBox(15);
+                        Text partsTitle = new Text("Parts");
+                        Button partsSearchBtn = new Button("Search");
+                        TextField partsSearchField = new TextField();
+                        partsHBoxTop.getChildren().addAll(partsTitle, partsSearchBtn, partsSearchField);
+                    parts.setTop(partsHBoxTop);
+
+                    TableView partsTableView = new TableView();
+// TODO:                   TableColumn<String, Part> column1 = new TableColumn<>("First Name");
+                    parts.setCenter(partsTableView);
+
+                    HBox partsHBoxBottom = new HBox(15);
+                        Button partsAddBtn = new Button("Add");
+                        Button partsModifyBtn = new Button("Modify");
+                        Button partsDeleteBtn = new Button("Delete");
+                        partsHBoxBottom.getChildren().addAll(partsAddBtn, partsModifyBtn, partsDeleteBtn);
+                    parts.setBottom(partsHBoxBottom);
                     
                 BorderPane products = new BorderPane();
+                products.setId("parts-products-box");
+                    HBox productsHBoxTop = new HBox(15);
+                        Text productsTitle = new Text("Products");
+                        Button productsSearchBtn = new Button("Search");
+                        TextField productsSearchField = new TextField();
+                        productsHBoxTop.getChildren().addAll(productsTitle, productsSearchBtn, productsSearchField);
+                    products.setTop(productsHBoxTop);
+
+                    TableView productsTableView = new TableView();
+// TODO: implement table columns after part class is created
+                    products.setCenter(productsTableView);
+
+                    HBox productsHBoxBottom = new HBox(15);
+                        Button productsAddBtn = new Button("Add");
+                        Button productsModifyBtn = new Button("Modify");
+                        Button productsDeleteBtn = new Button("Delete");
+                        productsHBoxBottom.getChildren().addAll(productsAddBtn, productsModifyBtn, productsDeleteBtn);
+                    products.setBottom(productsHBoxBottom);
 
             innerRoot.getChildren().addAll(parts, products);
-
-        root.setTop(title);
         root.setCenter(innerRoot);
+
+        Button exitBtn = new Button("Exit");
+        root.setBottom(exitBtn);
 
 
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(root, 1150, 750);
-        scene.getStylesheets().add("../controlStyles.css");
+        scene.getStylesheets().add("sample/controlStyles.css");
 
         primaryStage.setTitle("Software I");
         primaryStage.setScene(scene);
