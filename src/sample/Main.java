@@ -52,10 +52,14 @@ public class Main extends Application {
                     parts.setCenter(partsTableView);
 
                     HBox partsHBoxBottom = new HBox(15);
+                        Pane spacerPartsBotLeft = new Pane();
                         Button partsAddBtn = new Button("Add");
                         Button partsModifyBtn = new Button("Modify");
                         Button partsDeleteBtn = new Button("Delete");
-                        partsHBoxBottom.getChildren().addAll(partsAddBtn, partsModifyBtn, partsDeleteBtn);
+                        Pane spacerPartsBotRight = new Pane();
+                        partsHBoxBottom.setHgrow(spacerPartsBotLeft, Priority.ALWAYS);
+                        partsHBoxBottom.setHgrow(spacerPartsBotRight, Priority.ALWAYS);
+                        partsHBoxBottom.getChildren().addAll(spacerPartsBotLeft, partsAddBtn, partsModifyBtn, partsDeleteBtn, spacerPartsBotRight);
                     parts.setBottom(partsHBoxBottom);
             innerRoot.setHgrow(parts, Priority.ALWAYS);
                     
@@ -77,18 +81,26 @@ public class Main extends Application {
                     products.setCenter(productsTableView);
 
                     HBox productsHBoxBottom = new HBox(15);
+                        Pane spacerProdBotLeft = new Pane();
                         Button productsAddBtn = new Button("Add");
                         Button productsModifyBtn = new Button("Modify");
                         Button productsDeleteBtn = new Button("Delete");
-                        productsHBoxBottom.getChildren().addAll(productsAddBtn, productsModifyBtn, productsDeleteBtn);
+                        Pane spacerProdBotRight = new Pane();
+                        productsHBoxBottom.setHgrow(spacerProdBotLeft, Priority.ALWAYS);
+                        productsHBoxBottom.setHgrow(spacerProdBotRight, Priority.ALWAYS);
+                        productsHBoxBottom.getChildren().addAll(spacerProdBotLeft, productsAddBtn, productsModifyBtn, productsDeleteBtn, spacerProdBotRight);
                     products.setBottom(productsHBoxBottom);
             innerRoot.setHgrow(products, Priority.ALWAYS);
 
             innerRoot.getChildren().addAll(parts, products);
         root.setCenter(innerRoot);
 
-        Button exitBtn = new Button("Exit");
-        root.setBottom(exitBtn);
+        HBox bottomRootHBox = new HBox();
+            Pane spacerExitBtn = new Pane();
+            Button exitBtn = new Button("Exit");
+            bottomRootHBox.setHgrow(spacerExitBtn, Priority.ALWAYS);
+            bottomRootHBox.getChildren().addAll(spacerExitBtn, exitBtn);
+        root.setBottom(bottomRootHBox);
 
 
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -98,43 +110,6 @@ public class Main extends Application {
         primaryStage.setTitle("Software I");
         primaryStage.setScene(scene);
         primaryStage.show();
-//        // Create the Text Nodes
-//        Text centerText = new Text("Center");
-//        Text topText = new Text("Top");
-//        Text rightText = new Text("Right");
-//        Text bottomText = new Text("Bottom");
-//        Text leftText = new Text("Left");
-//
-//        // Set the alignment of the Top Text to Center
-//        BorderPane.setAlignment(topText,Pos.TOP_CENTER);
-//        // Set the alignment of the Bottom Text to Center
-//        BorderPane.setAlignment(bottomText,Pos.BOTTOM_CENTER);
-//        // Set the alignment of the Left Text to Center
-//        BorderPane.setAlignment(leftText,Pos.CENTER_LEFT);
-//        // Set the alignment of the Right Text to Center
-//        BorderPane.setAlignment(rightText, Pos.CENTER_RIGHT);
-//
-//        // Create a BorderPane with a Text node in each of the five regions
-//        BorderPane root = new BorderPane(centerText, topText, rightText, bottomText, leftText);
-//
-//        // Set the Size of the VBox
-//        root.setPrefSize(400, 400);
-//        // Set the Style-properties of the BorderPane
-//        root.setStyle("-fx-padding: 10;" +
-//                "-fx-border-style: solid inside;" +
-//                "-fx-border-width: 2;" +
-//                "-fx-border-insets: 5;" +
-//                "-fx-border-radius: 5;" +
-//                "-fx-border-color: blue;");
-//
-//        // Create the Scene
-//        Scene scene = new Scene(root);
-//        // Add the scene to the Stage
-//        primaryStage.setScene(scene);
-//        // Set the title of the Stage
-//        primaryStage.setTitle("A simple BorderPane Example");
-//        // Display the Stage
-//        primaryStage.show();
     }
 
 
