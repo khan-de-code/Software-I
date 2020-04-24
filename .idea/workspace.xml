@@ -77,6 +77,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -210,7 +212,7 @@
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1586654427973" duration="879000" />
       <workItem from="1586906987420" duration="4901000" />
-      <workItem from="1586997187733" duration="8314000" />
+      <workItem from="1586997187733" duration="11187000" />
     </task>
     <servers />
   </component>
@@ -238,22 +240,22 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="609" y="191" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1586654707294" />
-    <state width="1619" height="103" key="GridCell.Tab.0.bottom" timestamp="1587081307541">
+    <state width="1638" height="315" key="GridCell.Tab.0.bottom" timestamp="1587688022047">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1619" height="103" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1587081307541" />
-    <state width="1619" height="103" key="GridCell.Tab.0.center" timestamp="1587081307541">
+    <state width="1638" height="315" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1587688022047" />
+    <state width="1638" height="315" key="GridCell.Tab.0.center" timestamp="1587688022046">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1619" height="103" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1587081307541" />
-    <state width="1619" height="103" key="GridCell.Tab.0.left" timestamp="1587081307540">
+    <state width="1638" height="315" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1587688022046" />
+    <state width="1638" height="315" key="GridCell.Tab.0.left" timestamp="1587688022046">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1619" height="103" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1587081307540" />
-    <state width="1619" height="103" key="GridCell.Tab.0.right" timestamp="1587081307541">
+    <state width="1638" height="315" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1587688022046" />
+    <state width="1638" height="315" key="GridCell.Tab.0.right" timestamp="1587688022047">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1619" height="103" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1587081307541" />
+    <state width="1638" height="315" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1587688022047" />
     <state x="436" y="111" key="SettingsEditor" timestamp="1587002524654">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>

@@ -20,11 +20,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        Text title2 = new Text("Inventory Management System");
-        Text title3 = new Text("Inventory Management System3");
-
-
         BorderPane root = new BorderPane();
         Text title = new Text("Inventory Management System");
         title.setId("main-screen-title");
@@ -102,8 +97,8 @@ public class Main extends Application {
             bottomRootHBox.getChildren().addAll(spacerExitBtn, exitBtn);
         root.setBottom(bottomRootHBox);
 
+        Parent addPart = FXMLLoader.load(getClass().getResource("add-part.fxml"));
 
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(root, 1150, 750);
         scene.getStylesheets().add("sample/controlStyles.css");
 
