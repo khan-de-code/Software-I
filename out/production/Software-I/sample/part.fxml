@@ -46,20 +46,20 @@
                 <Text text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <TextField disable="true" promptText="Auto Gen - Disabled" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Text text="Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="partName" promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Text text="Inv" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField promptText="Inv" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="partInventory" promptText="Inv" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Text text="Price/Cost" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField promptText="Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="partPrice" promptText="Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Text text="Max" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                 <HBox spacing="20" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
-                    <TextField maxWidth="70" promptText="Max" />
+                    <TextField fx:id="partMax" maxWidth="70" promptText="Max" />
                <VBox alignment="CENTER" prefHeight="27.0" prefWidth="25.0">
                   <children>
                           <Text text="Min" textAlignment="CENTER" wrappingWidth="22.30615234375" />
                   </children>
                </VBox>
-                    <TextField maxWidth="70" promptText="Min" />
+                    <TextField fx:id="partMin" maxWidth="70" promptText="Min" />
                 </HBox>
             <Text fx:id="companyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" visible="false" GridPane.rowIndex="5" />
             <Text fx:id="machineIDText" strokeType="OUTSIDE" strokeWidth="0.0" text="Machine ID" visible="false" GridPane.rowIndex="5" />
@@ -83,7 +83,7 @@
       <HBox prefHeight="64.0" prefWidth="600.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
             <Pane HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" text="Save" />
+            <Button mnemonicParsing="false" onAction="#addSaveBtnPushed" text="Save" />
             <Button mnemonicParsing="false" onAction="#addCancelBtnPushed" text="Cancel" />
             <Pane prefHeight="64.0" prefWidth="44.0" />
          </children>

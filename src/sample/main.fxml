@@ -54,10 +54,12 @@
                   </HBox>
                </bottom>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="partsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="partIDTC" prefWidth="75.0" text="Part ID" />
+                      <TableColumn fx:id="partNameTC" prefWidth="75.0" text="Part Name" />
+                        <TableColumn fx:id="partInventoryTC" prefWidth="104.17922973632812" text="Inventory Level" />
+                        <TableColumn fx:id="partPriceTC" prefWidth="136.44342041015625" text="Price/Cost per Unit" />
                     </columns>
                   </TableView>
                </center></BorderPane>
@@ -76,10 +78,12 @@
                   </HBox>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="productsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="prodIDTC" prefWidth="75.0" text="Product ID" />
+                        <TableColumn fx:id="prodNameTC" prefWidth="75.0" text="Product Name" />
+                        <TableColumn fx:id="prodInventoryTC" prefWidth="104.17922973632812" text="Inventory Level" />
+                        <TableColumn fx:id="prodPriceTC" prefWidth="136.44342041015625" text="Price per Unit" />
                      </columns>
                   </TableView>
                </center>
