@@ -25,6 +25,11 @@ public class MainController implements Initializable {
     @FXML
     private Button addPartBtn;
     @FXML
+    private Button modifyPartBtn;
+    @FXML
+    private Button deletePartBtn;
+
+    @FXML
     private TableColumn<Part, Integer> partIDTC;
     @FXML
     private TableColumn<Part, String> partNameTC;
@@ -51,7 +56,6 @@ public class MainController implements Initializable {
 
 
     @Override
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Sets column widths evenly
         partIDTC.prefWidthProperty().bind(partsTable.widthProperty().divide(4));
@@ -80,23 +84,24 @@ public class MainController implements Initializable {
     }
 
     public void addPartBtnPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("part.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setMinHeight(400);
-        window.setMinWidth(600);
-        window.setScene(tableViewScene);
-        window.show();
+        inventory.addPart(PartController.start(inventory, null));
     }
 
-    public void updatePartsInventory(Part part) {
-        inventory.addPart(part);
+    public void modifyPartBtnPushed(ActionEvent event) throws IOException {
+        if (partsTable.getSelectionModel().getSelectedItem() != null) {
+            Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
+            Part modifiedPart = PartController.start(inventory, selectedPart);
 
-        partsTable.setItems(inventory.getAllParts());
+            int selectedPartIndex = inventory.getAllParts().indexOf(selectedPart);
+            inventory.updatePart(selectedPartIndex, modifiedPart);
+        }
     }
 
+    public void deletePartBtnPushed(ActionEvent event) {
+        if (partsTable.getSelectionModel().getSelectedItem() != null) {
+            Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
+            inventory.deletePart(selectedPart);
+        }
+    }
 
 }
