@@ -12,16 +12,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PartController">
     <top>
         <HBox spacing="10">
-            <Text fx:id="test">
-                Add Part
-            </Text>
+            <Text fx:id="partTitle" text="Add Part">
+            <font>
+               <Font size="22.0" />
+            </font>
+            <HBox.margin>
+               <Insets left="20.0" top="-5.0" />
+            </HBox.margin></Text>
             <Pane HBox.hgrow="ALWAYS" />
-            <RadioButton fx:id="inHouse" mnemonicParsing="false" onAction="#radioButtonChange" text="In-House">
+            <RadioButton fx:id="inHouse" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#radioButtonChange" text="In-House">
                 <toggleGroup>
                     <ToggleGroup fx:id="toggleGroup1" />
                 </toggleGroup>
@@ -29,22 +34,27 @@
             <Pane HBox.hgrow="ALWAYS" />
             <RadioButton fx:id="outsourced" mnemonicParsing="false" onAction="#radioButtonChange" text="Outsourced" toggleGroup="$toggleGroup1" />
             <Pane HBox.hgrow="ALWAYS" />
-         <padding>
-            <Insets left="5.0" top="10.0" />
-         </padding>
+            <padding>
+                <Insets left="5.0" top="20.0" />
+            </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
         </HBox>
     </top>
     <center>
         <GridPane hgap="10" vgap="10">
-            <padding><Insets bottom="0" left="80" right="20" top="15" /></padding>
+            <padding>
+                <Insets bottom="0" left="80" right="20" top="15" />
+            </padding>
             <columnConstraints>
                 <ColumnConstraints minWidth="120.0" />
-            <ColumnConstraints />
-            <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
             </columnConstraints>
             <children>
                 <Text text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField disable="true" promptText="Auto Gen - Disabled" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="partID" disable="true" promptText="Auto Gen - Disabled" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Text text="Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <TextField fx:id="partName" promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Text text="Inv" GridPane.columnIndex="0" GridPane.rowIndex="2" />
@@ -54,39 +64,39 @@
                 <Text text="Max" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                 <HBox spacing="20" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
                     <TextField fx:id="partMax" maxWidth="70" promptText="Max" />
-               <VBox alignment="CENTER" prefHeight="27.0" prefWidth="25.0">
-                  <children>
-                          <Text text="Min" textAlignment="CENTER" wrappingWidth="22.30615234375" />
-                  </children>
-               </VBox>
+                    <VBox alignment="CENTER" prefHeight="27.0" prefWidth="25.0">
+                        <children>
+                            <Text text="Min" textAlignment="CENTER" wrappingWidth="22.30615234375" />
+                        </children>
+                    </VBox>
                     <TextField fx:id="partMin" maxWidth="70" promptText="Min" />
                 </HBox>
-            <Text fx:id="companyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" visible="false" GridPane.rowIndex="5" />
-            <Text fx:id="machineIDText" strokeType="OUTSIDE" strokeWidth="0.0" text="Machine ID" visible="false" GridPane.rowIndex="5" />
-            <TextField fx:id="companyNameTF" promptText="Comp Name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="machineIDTF" promptText="Mach ID" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Text fx:id="companyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" visible="false" GridPane.rowIndex="5" />
+                <Text fx:id="machineIDText" strokeType="OUTSIDE" strokeWidth="0.0" text="Machine ID" visible="false" GridPane.rowIndex="5" />
+                <TextField fx:id="companyNameTF" promptText="Comp Name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="machineIDTF" promptText="Mach ID" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-         </rowConstraints>
-         <BorderPane.margin>
-            <Insets top="10.0" />
-         </BorderPane.margin>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            </rowConstraints>
+            <BorderPane.margin>
+                <Insets top="10.0" />
+            </BorderPane.margin>
         </GridPane>
     </center>
-   <bottom>
-      <HBox prefHeight="64.0" prefWidth="600.0" spacing="40.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#addSaveBtnPushed" text="Save" />
-            <Button mnemonicParsing="false" onAction="#addCancelBtnPushed" text="Cancel" />
-            <Pane prefHeight="64.0" prefWidth="44.0" />
-         </children>
-      </HBox>
-   </bottom>
+    <bottom>
+        <HBox prefHeight="64.0" prefWidth="600.0" spacing="40.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#addSaveBtnPushed" text="Save" />
+                <Button mnemonicParsing="false" onAction="#addCancelBtnPushed" text="Cancel" />
+                <Pane prefHeight="64.0" prefWidth="44.0" />
+            </children>
+        </HBox>
+    </bottom>
 </BorderPane>

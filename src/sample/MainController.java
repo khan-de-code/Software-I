@@ -10,18 +10,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    @FXML
+    private Text mainTitle;
+
     @FXML
     private Button addPartBtn;
     @FXML
@@ -39,6 +40,7 @@ public class MainController implements Initializable {
     private TableColumn<Part, Double> partPriceTC;
     @FXML
     private TableView<Part> partsTable;
+
     @FXML
     private TableColumn<Product, Integer> prodIDTC;
     @FXML
@@ -49,6 +51,13 @@ public class MainController implements Initializable {
     private TableColumn<Product, Double> prodPriceTC;
     @FXML
     private TableView<Product> productsTable;
+
+    @FXML
+    private TextField searchPartsTF;
+    @FXML
+    private TextField searchProductsTF;
+    ObservableList<Part> filteredPartList = FXCollections.observableArrayList();
+    ObservableList<Product> filteredProductList = FXCollections.observableArrayList();
 
     ObservableList<Part> partList = FXCollections.observableArrayList();
     ObservableList<Product> productList = FXCollections.observableArrayList();
@@ -74,17 +83,21 @@ public class MainController implements Initializable {
         partInventoryTC.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         partPriceTC.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
 
-        prodIDTC.setCellValueFactory(new PropertyValueFactory<Product, Integer>("prodIDTC"));
-        prodNameTC.setCellValueFactory(new PropertyValueFactory<Product, String>("prodNameTC"));
-        prodInventoryTC.setCellValueFactory(new PropertyValueFactory<Product, Integer>("prodInventoryTC"));
-        prodPriceTC.setCellValueFactory(new PropertyValueFactory<Product, Double>("prodPriceTC"));
+        prodIDTC.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+        prodNameTC.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        prodInventoryTC.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stock"));
+        prodPriceTC.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 
         partsTable.setItems(inventory.getAllParts());
         productsTable.setItems(inventory.getAllProducts());
     }
 
     public void addPartBtnPushed(ActionEvent event) throws IOException {
-        inventory.addPart(PartController.start(inventory, null));
+        Part returnedPart = PartController.start(inventory, null);
+        if (returnedPart != null) {
+            inventory.addPart(returnedPart);
+        }
+
     }
 
     public void modifyPartBtnPushed(ActionEvent event) throws IOException {
@@ -102,6 +115,67 @@ public class MainController implements Initializable {
             Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
             inventory.deletePart(selectedPart);
         }
+    }
+
+    public void addProductBtnPushed(ActionEvent event) throws IOException {
+        if (inventory.getAllParts().size() > 0) {
+            Product returnedProduct = ProductController.start(inventory, null);
+            if (returnedProduct != null) {
+                inventory.addProduct(returnedProduct);
+            }
+        }
+    }
+
+    public void setModifyProductBtnPushed(ActionEvent event) throws IOException {
+        if (productsTable.getSelectionModel().getSelectedItem() != null) {
+            Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();
+            Product modifiedProduct = ProductController.start(inventory, selectedProduct);
+
+            int selectedProductIndex = inventory.getAllProducts().indexOf(selectedProduct);
+            inventory.updateProduct(selectedProductIndex, modifiedProduct);
+        }
+    }
+
+    public void setDeleteProductBtnPushed(ActionEvent event) {
+        if (productsTable.getSelectionModel().getSelectedItem() != null) {
+            Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();
+            inventory.deleteProduct(selectedProduct);
+        }
+    }
+
+    public void searchPartsMain() {
+        filteredProductList = FXCollections.observableArrayList();
+        filteredPartList = FXCollections.observableArrayList();
+        if (searchPartsTF.getText().equals("")) {
+            partsTable.setItems(inventory.getAllParts());
+            return;
+        }
+
+        for (Part part : inventory.getAllParts()) {
+            if (part.getName().equals(searchPartsTF.getText())) {
+                filteredPartList.add(part);
+            }
+        }
+        partsTable.setItems(filteredPartList);
+    }
+
+    public void searchProductsMain() {
+        if (searchProductsTF.getText().equals("")) {
+            productsTable.setItems(inventory.getAllProducts());
+            return;
+        }
+
+        for (Product product : inventory.getAllProducts()) {
+            if (product.getName().equals(searchProductsTF.getText())) {
+                filteredProductList.add(product);
+            }
+        }
+        productsTable.setItems(filteredProductList);
+    }
+
+    public void exitMain() {
+        Stage stage = (Stage) searchProductsTF.getScene().getWindow();
+        stage.close();
     }
 
 }

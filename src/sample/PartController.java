@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class PartController implements Initializable {
     @FXML
+    private Text partTitle;
+    @FXML
     private Text companyNameText;
     @FXML
     private Text machineIDText;
@@ -35,6 +37,8 @@ public class PartController implements Initializable {
     @FXML
     private ToggleGroup toggleGroup1;
 
+    @FXML
+    private TextField partID;
     @FXML
     private TextField partName;
     @FXML
@@ -56,13 +60,16 @@ public class PartController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(PartController.class.getResource("part.fxml"));
+
+        currentInventory = inventory;
+        modifyPart = part;
+
         Parent partViewParent = loader.load();
 
         PartController partController = loader.getController();
-        currentInventory = inventory;
-        modifyPart = part;
         if (part != null) {
             partController.setModifyValues();
+            partController.partTitle.setText("Modify Part");
         }
 
         Scene partViewScene = new Scene(partViewParent);
@@ -109,7 +116,6 @@ public class PartController implements Initializable {
                     String temp = "";
                     Boolean firstDot = false;
                     for (int i = 0; i < newValue.length(); i++) {
-                        Boolean breakLoop = false;
                         char currentChar = newValue.charAt(i);
 
                         switch (currentChar) {
@@ -155,11 +161,10 @@ public class PartController implements Initializable {
     }
 
     public void setModifyValues() {
+        partID.setText(modifyPart.getId() + "");
         partName.setText(modifyPart.getName());
         partInventory.setText(modifyPart.getStock() + "");
-        System.out.println(String.valueOf(modifyPart.getPrice()));
         partPrice.setText(String.valueOf(modifyPart.getPrice()));
-        System.out.println(partPrice.getText());
         partMin.setText(modifyPart.getMax() + "");
         partMax.setText(modifyPart.getMax() + "");
         if (modifyPart instanceof InHouse) {
@@ -214,26 +219,50 @@ public class PartController implements Initializable {
         MainController mainController = loader.getController();
         int id = getID(mainController);
 
-        if (toggleGroup1.getSelectedToggle().equals(inHouse)) {
-            if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
-                    || partMax.getText().equals("") || partMin.getText().equals("") || machineIDTF.getText().equals("")) {
-                return;
+        if (modifyPart == null) {
+            if (toggleGroup1.getSelectedToggle().equals(inHouse)) {
+                if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
+                        || partMax.getText().equals("") || partMin.getText().equals("") || machineIDTF.getText().equals("")) {
+                    return;
+                }
+
+                returnPart = new InHouse(id, partName.getText(), Double.parseDouble(partPrice.getText()),
+                        Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
+                        Integer.parseInt(partMax.getText()), Integer.parseInt(machineIDTF.getText()));
             }
 
-            returnPart = new InHouse(id, partName.getText(), Double.parseDouble(partPrice.getText()),
-                    Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
-                    Integer.parseInt(partMax.getText()), Integer.parseInt(machineIDTF.getText()));
-        }
+            if (toggleGroup1.getSelectedToggle().equals(outsourced)) {
+                if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
+                        || partMax.getText().equals("") || partMin.getText().equals("") || companyNameTF.getText().equals("")) {
+                    return;
+                }
 
-        if (toggleGroup1.getSelectedToggle().equals(outsourced)) {
-            if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
-                    || partMax.getText().equals("") || partMin.getText().equals("") || companyNameTF.getText().equals("")) {
-                return;
+                returnPart = new Outsourced(id, partName.getText(), Double.parseDouble(partPrice.getText()),
+                        Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
+                        Integer.parseInt(partMax.getText()), companyNameTF.getText());
+            }
+        } else {
+            if (toggleGroup1.getSelectedToggle().equals(inHouse)) {
+                if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
+                        || partMax.getText().equals("") || partMin.getText().equals("") || machineIDTF.getText().equals("")) {
+                    return;
+                }
+
+                returnPart = new InHouse(Integer.parseInt(partID.getText()), partName.getText(), Double.parseDouble(partPrice.getText()),
+                        Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
+                        Integer.parseInt(partMax.getText()), Integer.parseInt(machineIDTF.getText()));
             }
 
-            returnPart = new Outsourced(id, partName.getText(), Double.parseDouble(partPrice.getText()),
-                    Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
-                    Integer.parseInt(partMax.getText()), companyNameTF.getText());
+            if (toggleGroup1.getSelectedToggle().equals(outsourced)) {
+                if (partName.getText().equals("") || partPrice.getText().equals("") || partInventory.getText().equals("")
+                        || partMax.getText().equals("") || partMin.getText().equals("") || companyNameTF.getText().equals("")) {
+                    return;
+                }
+
+                returnPart = new Outsourced(Integer.parseInt(partID.getText()), partName.getText(), Double.parseDouble(partPrice.getText()),
+                        Integer.parseInt(partInventory.getText()), Integer.parseInt(partMin.getText()),
+                        Integer.parseInt(partMax.getText()), companyNameTF.getText());
+            }
         }
         Stage stage = (Stage) inHouse.getScene().getWindow();
         stage.close();
