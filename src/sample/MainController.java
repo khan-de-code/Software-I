@@ -104,6 +104,9 @@ public class MainController implements Initializable {
         if (partsTable.getSelectionModel().getSelectedItem() != null) {
             Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
             Part modifiedPart = PartController.start(inventory, selectedPart);
+            if (modifiedPart == null) {
+                return;
+            }
 
             int selectedPartIndex = inventory.getAllParts().indexOf(selectedPart);
             inventory.updatePart(selectedPartIndex, modifiedPart);
@@ -130,6 +133,9 @@ public class MainController implements Initializable {
         if (productsTable.getSelectionModel().getSelectedItem() != null) {
             Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();
             Product modifiedProduct = ProductController.start(inventory, selectedProduct);
+            if (modifiedProduct == null) {
+                return;
+            }
 
             int selectedProductIndex = inventory.getAllProducts().indexOf(selectedProduct);
             inventory.updateProduct(selectedProductIndex, modifiedProduct);

@@ -63,6 +63,7 @@ public class PartController implements Initializable {
 
         currentInventory = inventory;
         modifyPart = part;
+        returnPart = null;
 
         Parent partViewParent = loader.load();
 
@@ -165,7 +166,7 @@ public class PartController implements Initializable {
         partName.setText(modifyPart.getName());
         partInventory.setText(modifyPart.getStock() + "");
         partPrice.setText(String.valueOf(modifyPart.getPrice()));
-        partMin.setText(modifyPart.getMax() + "");
+        partMin.setText(modifyPart.getMin() + "");
         partMax.setText(modifyPart.getMax() + "");
         if (modifyPart instanceof InHouse) {
             inHouse.setSelected(true);

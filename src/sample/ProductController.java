@@ -91,6 +91,7 @@ public class ProductController implements Initializable {
 
         currentInventory = inventory;
         modifyProduct = product;
+        returnProduct = null;
 
         Parent productViewParent = loader.load();
 
@@ -295,6 +296,13 @@ public class ProductController implements Initializable {
 
     public void saveBtnPushed() {
         if (buildingProductPartList.size() <= 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("No Parts Conflict");
+            alert.setContentText("You are attempting to save a product with no parts. Please ensure at least one part" +
+                    " is selected for your product.");
+
+            alert.showAndWait();
             return;
         }
 
@@ -315,6 +323,7 @@ public class ProductController implements Initializable {
             alert.showAndWait();
             return;
         }
+
 
         int sumOfPartsPrice = 0;
         for (Part part : buildingProductPartList) {
